@@ -1,0 +1,9 @@
+name: Hello Module
+# core: 8.x
+description: Mon premier module
+package: Administration
+type: module
+
+version: '8.x-1.0'
+core: '8.x'
+project: 'hello'
