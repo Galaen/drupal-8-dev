@@ -7,3 +7,10 @@ hello.hello:
     param2: 'no param2'
   requirements:
     _access: 'TRUE'
+hello.hello-rss:
+  path: '/hello-rss'
+  defaults:
+    _title: 'Hello Rss'
+    _controller: '\Drupal\hello\Controller\HelloRssController::content'
+  requirements:
+    _access: 'TRUE'

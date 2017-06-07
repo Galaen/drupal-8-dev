@@ -14,12 +14,15 @@ class HelloController extends ControllerBase {
         return array (
             '#markup' => $this->t('Hello: %username! Parameter: %param1, %param2',
                 array(
-                '%username' => $this->currentUser()->getUsername(),
-                '%param1' => $param1,
-                '%param2' => $param2
+                    '%username' => $this->currentUser()->getUsername(),
+                    '%param1' => $param1,
+                    '%param2' => $param2
                 )),
             '#cache' => array(
-                'max-age' =>'10'
+                'keys' => 'hello_page',
+                //'max-age' => '10',
+                'contexts' => ['user', 'url.path'],
+                'tags' => ['user:'.$this->currentUser()->id()]
             )
         );
     }

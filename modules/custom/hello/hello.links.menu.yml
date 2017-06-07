@@ -3,3 +3,8 @@ hello.page:
   route_name: hello.hello
   description: 'Hello Page'
   menu_name: main
+hello.rss:
+  title: 'Hello RSS'
+  route_name: hello.hello-rss
+  description: 'Hello RSS Page'
+  menu_name: main
