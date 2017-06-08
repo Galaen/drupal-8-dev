@@ -7,6 +7,16 @@ hello.hello:
     param2: 'no param2'
   requirements:
     _access: 'TRUE'
+
+hello.item-list:
+  path: '/item-list/{param1}'
+  defaults:
+    _title: 'Item List'
+    _controller: '\Drupal\hello\Controller\HelloItemListController::content'
+    param1: ''
+  requirements:
+    _access: 'TRUE'
+
 hello.hello-rss:
   path: '/hello-rss'
   defaults:
