@@ -24,3 +24,12 @@ hello.hello-rss:
     _controller: '\Drupal\hello\Controller\HelloRssController::content'
   requirements:
     _access: 'TRUE'
+
+
+hello.node_history:
+  path: '/node/{node}/history'
+  defaults:
+    _title: 'Node update history'
+    _controller: '\Drupal\hello\Controller\HelloNodeHistoryController::content'
+  requirements:
+    _permission: 'view published content'

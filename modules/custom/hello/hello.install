@@ -1,0 +1,68 @@
+<?php
+
+use Drupal\Core\Database\Database;
+
+/**
+ * Implements hook_schema().
+ */
+function hello_schema() {
+  $schema['hello_node_history'] = [
+    'description' => 'Hello node history table',
+    'fields' => [
+      'hid' => ['type' => 'serial', 'not null' => TRUE],
+      'nid' => [
+        'description' => 'nid description',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'length' => 10,
+        'not null' => TRUE,
+      ],
+      'update_time' => [
+        'type' => 'int',
+        'length' => 11,
+        'unsigned' => FALSE,
+        'not null' => TRUE,
+      ],
+      'uid' => [
+        'description' => "User Id",
+        'type' => 'int',
+        'length' => 10,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ]
+    ],
+    'primary key' => ['hid'],
+    'indexes' => ['nid' => ['nid']],
+  ];
+
+  return $schema;
+}
+
+/**
+ * Implements hook_update
+ */
+/**
+ * Added a new field to store the User Id
+ */
+function hello_update_8301(&$sandbox) {
+  // For non-batch updates, the signature can simply be:
+  // function hook_update_N() {
+
+  // Example function body for adding a field to a database table, which does
+  // not require a batch operation:
+  $spec = [
+    'description' => "User Id",
+    'type' => 'int',
+    'length' => 10,
+    'unsigned' => TRUE,
+    'not null' => TRUE
+  ];
+  $schema = Database::getConnection()->schema();
+  $schema->addField('hello_node_history', 'uid', $spec);
+
+  // Example of what to do if there is an error during your update.
+  //if ($some_error_condition_met) {
+  //  throw new UpdateException('Something went wrong; here is what you should do.');
+  //}
+
+}

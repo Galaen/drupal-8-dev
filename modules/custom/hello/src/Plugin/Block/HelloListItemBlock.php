@@ -30,7 +30,7 @@ class HelloListItemBlock extends BlockBase implements ContainerFactoryPluginInte
 
     public function __construct(array $configuration, $plugin_id, $plugin_definition, AccountInterface $currentUser, Connection $database, EntityTypeManagerInterface $entityTypeManager, QueryFactory $entityQuery) {
         parent::__construct($configuration, $plugin_id, $plugin_definition);
-        $this->currentUser = $current_user;
+        $this->currentUser = $currentUser;
         $this->connection = $database;
         $this->entityTypeManager = $entityTypeManager;
         $this->entityQuery = $entityQuery;
@@ -94,7 +94,9 @@ class HelloListItemBlock extends BlockBase implements ContainerFactoryPluginInte
         '#theme' => 'item_list',
         '#items' => $items,
         '#cache' => array(
-            'max-age' =>'0'
+//            'max-age' =>'0'
+            'contexts' => ['url'],
+            'tag' => ['node:list']
         )
     );
   }

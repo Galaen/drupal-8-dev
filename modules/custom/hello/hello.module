@@ -27,3 +27,22 @@ function hello_user_login($account) {
 //    $account = \Drupal::currentUser();
     drupal_set_message(t("Bienvenue mon gars %user", array('%user' => $account->getUsername())), 'warning');
 }
+
+function hello_entity_update($entity) {
+//  kint($entity);
+
+  $database = \Drupal::database();
+
+  $database->insert('hello_node_history')->fields(
+    array(
+      'nid' => $entity->id(),
+      'uid' => $entity->getRevisionUserId(),
+      'update_time' => $entity->getChangedTime()
+    )
+  )->execute();
+
+
+
+  //exit();
+
+}
