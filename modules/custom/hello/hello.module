@@ -40,9 +40,10 @@ function hello_entity_update($entity) {
       'update_time' => $entity->getChangedTime()
     )
   )->execute();
-
-
-
   //exit();
+}
+
+function hello_block_view_alter($block) {
+  kint($block);
 
 }

@@ -19,8 +19,8 @@ class HelloNodeHistoryTasks extends DeriverBase {
    */
   public function getDerivativeDefinitions($base_plugin_definition) {
     // Implement dynamic logic to provide values for the same keys as in example.links.task.yml.
-//    $this->derivatives['example.task_id'] = $base_plugin_definition;
-//    $this->derivatives['example.task_id']['title'] = "I'm a tab";
+    $this->derivatives['hello.hello.history'] = $base_plugin_definition;
+    $this->derivatives['hello.hello.history']['title'] = "I'm a tab";
 //    $this->derivatives['example.task_id']['route_name'] = 'example.route';
     return $this->derivatives;
   }

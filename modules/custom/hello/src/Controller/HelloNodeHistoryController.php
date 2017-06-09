@@ -10,51 +10,60 @@ namespace Drupal\hello\Controller;
 use Drupal\Core\Controller\ControllerBase;
 
 class HelloNodeHistoryController extends ControllerBase {
-    public function content($node) {
+    public function content(\Drupal\node\NodeInterface $node) {
+
+      //kint($node);
 
       $database = \Drupal::database();
+//
+//      $result = $database->select('hello_node_history', 'h')
+//        ->condition('nid', $node->id())
+//        ->fields('h', array('uid', 'update_time'))
+//        ->execute();
+//        //->fetchAll();
 
-      $result = $database->select('hello_node_history', 'h')
-        ->condition('nid', $node)
+
+      $query = $database->select('hello_node_history', 'h')
         ->fields('h', array('uid', 'update_time'))
-        ->execute()
-        ->fetchAll();
+        ->condition('nid', $node->id());
+
+
+      $result = $query->extend('Drupal\Core\Database\Query\PagerSelectExtender')->limit('5')->execute();//->fetchAll();
 
       $dateFormatter = \Drupal::service('date.formatter');
 
       $rows = [];
       $header = ['User', 'Update time'];
 
-      foreach ($result as &$row) {
-        $account = \Drupal\user\Entity\User::load($row->uid);
+      $userStorage = $this->entityTypeManager()->getStorage('user');
+
+      foreach ($result as $row) {
+        $account = $userStorage->load($row->uid);
+        //$account = \Drupal\user\Entity\User::load($row->uid);
         $rows[] = [
           $account->toLink(),
           $dateFormatter->format($row->update_time, 'perso')
         ];
       }
 
-/*
-      $rows = array(
-        // Simple row
-        array(
-          'Cell 1', 'Cell 2', 'Cell 3'
-        ),
-        // Row with attributes on the row and some of its cells.
-        array(
-          'data' => array('Cell 1', array('data' => 'Cell 2', 'colspan' => 2)), 'class' => array('funky')
-        ),
-      );
-*/
-      return array(
+
+      $pager = array('#type' => 'pager');
+
+      $table = array(
         '#theme' => 'table',
         '#rows' => $rows,
-        '#header' => $header,
+        '#header' => $header/*,
         '#cache' => array(
-                    'max-age' =>'0'
-        //'contexts' => ['url'],
-        //'tag' => ['node:list']
-      )
-    );
+          'max-age' =>'0'
+          //'contexts' => ['url'],
+          //'tag' => ['node:list']
+        )*/
+      );
+
+      return array(
+        'table' => $table,
+        'pager' => $pager
+      );
 /*
         return array (
             '#markup' => 'test'

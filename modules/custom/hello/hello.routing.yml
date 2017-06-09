@@ -8,6 +8,14 @@ hello.hello:
   requirements:
     _access: 'TRUE'
 
+hello.hello_calculator:
+  path: '/hello/calculator'
+  defaults:
+    _title: 'Calculator'
+    _form: '\Drupal\hello\Form\HelloCalculatorForm'
+  requirements:
+    _access: 'TRUE'
+
 hello.item-list:
   path: '/item-list/{param1}'
   defaults:
@@ -33,3 +41,11 @@ hello.node_history:
     _controller: '\Drupal\hello\Controller\HelloNodeHistoryController::content'
   requirements:
     _permission: 'view published content'
+
+hello.block-color:
+  path: '/admin/appearance/block-color'
+  defaults:
+    _title: 'Block Color'
+    _form: '\Drupal\hello\Form\HelloAdminForm'
+  requirements:
+    _access: 'TRUE'

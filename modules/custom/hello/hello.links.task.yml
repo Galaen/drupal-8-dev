@@ -1,6 +1,18 @@
 hello.history:
-  #deriver: 'Drupal\hello\Plugin\Derivative\HelloNodeHistoryTasks'
+  #: '\Drupal\hello\Plugin\Derivative\HelloNodeHistoryTasks'
   title: 'History'
   base_route : entity.node.canonical
   route_name: hello.node_history
+  description: 'History tab'
+
+hello.hello:
+  title: 'Hello'
+  base_route : hello
+  route_name: hello.hello
+  description: 'Hello Tab'
+
+hello.calculator:
+  title: 'Calculator'
+  base_route : hello
+  route_name: hello.hello_calculator
   description: 'History tab'
