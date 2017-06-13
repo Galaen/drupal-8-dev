@@ -2,6 +2,11 @@
 
 use Drupal\Core\Database\Database;
 
+function hello_uninstall() {
+  $state = \Drupal::state();
+  $state->delete('hello.calculator_last');
+}
+
 /**
  * Implements hook_schema().
  */

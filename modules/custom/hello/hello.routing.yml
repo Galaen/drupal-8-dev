@@ -14,7 +14,7 @@ hello.hello_calculator:
     _title: 'Calculator'
     _form: '\Drupal\hello\Form\HelloCalculatorForm'
   requirements:
-    _access: 'TRUE'
+    _permission: 'hello.access'
 
 hello.item-list:
   path: '/item-list/{param1}'
@@ -47,5 +47,21 @@ hello.block-color:
   defaults:
     _title: 'Block Color'
     _form: '\Drupal\hello\Form\HelloAdminForm'
+  requirements:
+    _permission: 'hello.admin'
+
+hello.access:
+  path: '/hello-access'
+  defaults:
+    _controller: '\Drupal\hello\Controller\HelloAccessController::content'
+    _title: 'Hello access'
+  requirements:
+    _access_hello: '48'
+
+
+hello.path_with_data:
+  path: 'path-with-data'
+  defaults:
+    _controller: '\Drupal\hello\Controller\HelloAjaxTestController::render'
   requirements:
     _access: 'TRUE'

@@ -8,6 +8,7 @@
 namespace Drupal\hello\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\Url;
 
 class HelloNodeHistoryController extends ControllerBase {
     public function content(\Drupal\node\NodeInterface $node) {
@@ -27,6 +28,10 @@ class HelloNodeHistoryController extends ControllerBase {
         ->fields('h', array('uid', 'update_time'))
         ->condition('nid', $node->id());
 
+      $count = $query
+        ->countQuery()
+        ->execute()
+        ->fetchField();
 
       $result = $query->extend('Drupal\Core\Database\Query\PagerSelectExtender')->limit('5')->execute();//->fetchAll();
 
@@ -37,6 +42,8 @@ class HelloNodeHistoryController extends ControllerBase {
 
       $userStorage = $this->entityTypeManager()->getStorage('user');
 
+
+//      $count = 0;
       foreach ($result as $row) {
         $account = $userStorage->load($row->uid);
         //$account = \Drupal\user\Entity\User::load($row->uid);
@@ -44,6 +51,7 @@ class HelloNodeHistoryController extends ControllerBase {
           $account->toLink(),
           $dateFormatter->format($row->update_time, 'perso')
         ];
+ //       $count++;
       }
 
 
@@ -60,10 +68,31 @@ class HelloNodeHistoryController extends ControllerBase {
         )*/
       );
 
-      return array(
+      $link['examples_link'] = [
+        '#title' => $this->t('Click me for a surprise!!!'),
+        '#type' => 'link',
+        '#url' => Url::fromRoute('hello.path_with_data'), //Url::fromRoute('examples.description'),
+        '#prefix' => '<div id="foo-replace">',
+        '#suffix' => '</div>',
+        //'#id' => 'foo-replace',
+        '#ajax' => [
+          //'event' => 'click',
+          //'method' => 'replaceWith',
+          //'wrapper' => 'foo-replace',
+          'effect' => 'fade'
+        ]
+      ];
+
+      return [
+        'link' => $link,
+        'hello_node_history' => [
+          '#theme' => 'hello_node_history',
+          '#node' => $node,//->getTitle(),
+          '#count' => $count
+        ],
         'table' => $table,
         'pager' => $pager
-      );
+      ];
 /*
         return array (
             '#markup' => 'test'

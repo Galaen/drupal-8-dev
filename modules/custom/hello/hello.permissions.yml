@@ -1,0 +1,10 @@
+hello.access:
+  title: 'Access hello'
+  description: 'Restriction au Hello bloc'
+  restrict access: 'true'
+
+
+hello.admin:
+  title: 'Administer hello'
+  description: 'Administer the Hello module'
+  restrict access: 'true'

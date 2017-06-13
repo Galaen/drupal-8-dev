@@ -1,0 +1,10 @@
+services:
+  access_check.hello:
+    class: Drupal\hello\Access\HelloAccessCheck
+    tags:
+      - { name: access_check, applies_to: _access_hello }
+
+  bo_access_restriction.hello:
+    class: Drupal\hello\Routing\HelloBOAccessRestriction
+    tags:
+      - { name: event_subscriber }

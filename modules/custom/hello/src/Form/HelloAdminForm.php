@@ -27,6 +27,8 @@ class HelloAdminForm extends ConfigFormBase {
   }
 
   public function buildForm(array $form, FormStateInterface $form_state) {
+    $color = $this->config('hello.config')->get('block-color');
+   // kint($color);
     $form['color_select'] = [
       '#type' => 'select',
       '#title' => $this->t('Select element'),
@@ -35,6 +37,7 @@ class HelloAdminForm extends ConfigFormBase {
         'green' => $this->t('Green'),
         'blue' => $this->t('Blue')
       ],
+      '#default_value' => $color,
     ];
 
     return parent::buildForm($form, $form_state);
@@ -46,6 +49,38 @@ class HelloAdminForm extends ConfigFormBase {
 
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $this->config('hello.config')->set('block-color', $form_state->getValue('color_select'))->save();
+
+    //$block_manager = \Drupal::service('plugin.manager.block');
+    //kint($block_manager);
+/*
+    $query = $blockEntityManager = \Drupal::service('entity.manager')->getStorage('block')->getQuery();
+    $bids = $query->execute();
+    //kint($blockEntityManager);
+    //kint($bids);
+    $blocks = \Drupal::service('entity.manager')->getStorage('block')->loadMultiple($bids);
+    kint($blocks);
+
+
+    foreach ($blocks as $block) {
+      kint($block->getEntityType());
+      exit();
+    }
+
+    exit();
+*/
+    \Drupal::entityTypeManager()->getViewBuilder('block')->resetCache();
+
+
+    //$blockEntityManager->resetCache();
+    //exit();
+
+    //$block_manager->clearCachedDefinitions();
+
+    //exit();
+
+    //\Drupal::service('cache_tags.invalidator')->invalidateTags('block');
+
+
     parent::submitForm($form, $form_state);
   }
 

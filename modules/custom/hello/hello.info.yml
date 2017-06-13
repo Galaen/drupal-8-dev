@@ -1,8 +1,10 @@
 name: Hello Module
+type: module
 # core: 8.x
 description: Mon premier module
 package: Administration
-type: module
+libraries:
+  - hello/hello
 
 version: '8.x-1.0'
 core: '8.x'

@@ -26,7 +26,7 @@ class HelloBlock extends BlockBase implements ContainerFactoryPluginInterface {
 
     public function __construct(array $configuration, $plugin_id, $plugin_definition, AccountInterface $currentUser, DateFormatterInterface $dateFormatter) {
         parent::__construct($configuration, $plugin_id, $plugin_definition);
-        $this->currentUser = $current_user;
+        $this->currentUser = $currentUser;
         $this->dateFormatter = $dateFormatter;
     }
 

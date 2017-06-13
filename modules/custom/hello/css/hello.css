@@ -1,0 +1,21 @@
+/*
+.hello-block-red {
+    background-color: #F00;
+}
+.hello-block-green {
+    background-color: #0F0;
+}
+.hello-block-blue {
+    background-color: #00F;
+}
+*/
+
+.sidebar .block.hello-block-red {
+    background-color: #F00;
+}
+.sidebar .block.hello-block-green {
+    background-color: #0F0;
+}
+.sidebar .block.hello-block-blue {
+    background-color: #00F;
+}

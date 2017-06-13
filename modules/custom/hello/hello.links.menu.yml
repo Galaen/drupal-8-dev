@@ -15,3 +15,9 @@ hello.rss:
   route_name: hello.hello-rss
   description: 'Hello RSS Page'
   menu_name: main
+
+hello.block-color-link:
+  title: 'Block Color'
+  description: 'Hello Block Color Page'
+  route_name: hello.block-color
+  parent: system.themes_page
