@@ -1,0 +1,25 @@
+uuid: 37bb63c6-f9ed-4809-bf7c-197cdfc2e431
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: dJ0L2DNSj5q6XVZAGsuVDpJTh5UeYkIPwKrUOOpr8YI
+id: authenticated
+label: 'Authenticated user'
+weight: 1
+is_admin: false
+permissions:
+  - 'access comments'
+  - 'access content'
+  - 'access shortcuts'
+  - 'access site-wide contact form'
+  - 'add annonce entities'
+  - 'administer views'
+  - 'delete own annonce entities'
+  - 'edit own annonce entities'
+  - hello.admin
+  - 'post comments'
+  - 'search content'
+  - 'skip comment approval'
+  - 'use text format basic_html'
+  - 'view published annonce entities'

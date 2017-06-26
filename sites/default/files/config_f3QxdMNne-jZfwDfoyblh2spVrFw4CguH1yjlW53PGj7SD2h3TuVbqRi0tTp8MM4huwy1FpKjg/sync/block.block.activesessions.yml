@@ -1,0 +1,28 @@
+uuid: 19810c15-67a1-42f6-beaa-dc0f99fbe0bc
+langcode: en
+status: false
+dependencies:
+  module:
+    - annonce
+    - hello
+  theme:
+    - bartik
+id: activesessions
+theme: bartik
+region: sidebar_second
+weight: -7
+provider: null
+plugin: hello_active_session_block
+settings:
+  id: hello_active_session_block
+  label: 'Active Sessions'
+  provider: hello
+  label_display: visible
+visibility:
+  annonce_date:
+    id: annonce_date
+    module: ''
+    negate: false
+    start_date: '2017-01-01'
+    end_date: '2017-08-01'
+    context_mapping: {  }

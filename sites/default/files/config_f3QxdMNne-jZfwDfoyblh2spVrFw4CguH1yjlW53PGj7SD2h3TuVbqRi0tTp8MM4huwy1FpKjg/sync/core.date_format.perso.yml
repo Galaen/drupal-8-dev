@@ -1,0 +1,8 @@
+uuid: 08bf796a-b433-4de6-aba5-a566612f15f0
+langcode: en
+status: true
+dependencies: {  }
+id: perso
+label: perso
+locked: false
+pattern: 'm/d/Y - H:i:s'
