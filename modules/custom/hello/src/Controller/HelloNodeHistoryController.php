@@ -42,6 +42,8 @@ class HelloNodeHistoryController extends ControllerBase {
 
       $userStorage = $this->entityTypeManager()->getStorage('user');
 
+      $startMem = memory_get_usage(FALSE); // octets
+      $startTime = microtime(TRUE);      // Float in sec
 
 //      $count = 0;
       foreach ($result as $row) {
@@ -53,6 +55,17 @@ class HelloNodeHistoryController extends ControllerBase {
         ];
  //       $count++;
       }
+
+      $endMem = memory_get_usage(FALSE); // octets
+
+      $diffTime = microtime(TRUE) - $startTime;
+      $diffMem = $endMem - $startMem;
+
+      \Drupal::logger('hello')->notice('HelloNodeHistoryController::content: for each time: '. $diffTime);
+      \Drupal::logger('hello')->notice('HelloNodeHistoryController::content: for each mem: '. $startMem);
+      \Drupal::logger('hello')->notice('HelloNodeHistoryController::content: for each mem: '. $endMem);
+      \Drupal::logger('hello')->notice('HelloNodeHistoryController::content: for each mem: '. $diffMem);
+
 
 
       $pager = array('#type' => 'pager');

@@ -1,0 +1,18 @@
+<?php
+
+/**
+* @file
+* This module will manage drawing in AJAX.
+*/
+
+/**
+ * Implements hook_theme().
+ */
+function rgb_painting_theme($existing, $type, $theme, $path) {
+  $items = [
+    'dot' => [
+      'render element' => 'element',
+    ],
+  ];
+  return $items;
+}

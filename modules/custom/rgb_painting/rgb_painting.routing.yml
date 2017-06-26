@@ -1,0 +1,18 @@
+rgb_painting.painting_controller_render:
+  path: '/painting/{name}'
+  defaults:
+    _title: 'Painting'
+    _controller: '\Drupal\rgb_painting\Controller\PaintingController::render'
+    name: NULL
+  requirements:
+    _access: 'TRUE'
+    _permission: 'access content'
+
+
+rgb_painting.path_with_data:
+  path: 'path-with-data/{dot}'
+  defaults:
+    _controller: '\Drupal\rgb_painting\Controller\PaintingController::ajaxResp'
+    dot: NULL
+  requirements:
+    _access: 'TRUE'

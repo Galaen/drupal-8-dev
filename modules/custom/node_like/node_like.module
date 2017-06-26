@@ -1,0 +1,78 @@
+<?php
+
+/**
+ * @file
+ * Contains node_like.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function node_like_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the node_like module.
+    case 'help.page.node_like':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Add Like button to nodes') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+
+/**
+ * Implements hook_ENTITY_TYPE_view().
+ */
+function node_like_node_view(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display, $view_mode) {
+  if (!$display->getComponent('reusable_form')) {
+    return;
+  }
+  $node_type = \Drupal\node\Entity\NodeType::load($entity->bundle());
+  $plugin = $node_type->getThirdPartySetting('reusable_forms', 'plugin');
+  if (!$plugin) {
+    return;
+  }
+
+  if ($plugin == 'node_like_form') {
+    $database = \Drupal::database();
+    $likes = $database->select('node_like_form', 'nl')
+      ->fields('nl', array('uid'))
+      ->condition('nid', $entity->id())
+      ->countQuery()
+      ->execute()
+      ->fetchField();
+
+    $build['node_like_likes'] = [
+      '#markup' => '<div id="likes-id">'.t('Likes: %likes', ['%likes' => $likes]).'</div>'
+    ];
+  }
+}
+
+
+/**
+ * Implements hook_entity_extra_field_info().
+ */
+function node_like_entity_extra_field_info() {
+  $extra = array();
+
+  $bundles = \Drupal\node\Entity\NodeType::loadMultiple();
+  $bundles = array_filter($bundles, function($bundle){
+    return $bundle->getThirdPartySetting('reusable_forms', 'enabled') === 1 && $bundle->getThirdPartySetting('reusable_forms', 'plugin') === 'node_like_form';
+  });
+
+  foreach ($bundles as $bundle) {
+    $extra['node'][$bundle->Id()]['display']['node_like_likes'] = array(
+      'label' => t('Likes'),
+      'description' => t('Display number of likes'),
+      'weight' => 100,
+      'visible' => TRUE,
+    );
+  }
+
+  return $extra;
+}
+

@@ -1,0 +1,7 @@
+name: Node Like
+type: module
+description: Add Like button to nodes
+core: 8.x
+package: Training
+dependencies:
+  - reusable_forms

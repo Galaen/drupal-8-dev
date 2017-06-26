@@ -14,6 +14,7 @@ class HelloBOAccessRestriction extends RouteSubscriberBase {
    * {@inheritdoc}
    */
   protected function alterRoutes(RouteCollection $collection) {
+/*
     if ($route = $collection->get('system.modules_list')) {
       $route->setRequirement('_access', 'FALSE');
     }
@@ -23,7 +24,7 @@ class HelloBOAccessRestriction extends RouteSubscriberBase {
     if ($route = $collection->get('update.module_install')) {
       $route->setRequirement('_access', 'FALSE');
     }
-
+*/
 
 /*
     // Change path '/user/login' to '/login'.

@@ -1,0 +1,6 @@
+name: 'RGB Painting'
+description: 'Drawing in AJAX'
+
+package: Custom
+type: module
+core: 8.x

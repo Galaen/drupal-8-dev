@@ -1,0 +1,5 @@
+rgb-painting:
+  version: 1.x
+  css:
+    theme:
+      css/rgb-painting.css: {}

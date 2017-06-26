@@ -1,0 +1,42 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the Email Form module.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function node_like_schema() {
+  $schema['node_like_form'] = array(
+    'description' => 'Stores likes per node per user.',
+    'fields' => array(
+      'lid' => array(
+        'description' => 'Like/node ID.',
+        'type' => 'serial',
+        'length' => 10,
+        'not null' => TRUE,
+      ),
+      'nid' => array(
+        'description' => 'Node ID.',
+        'type' => 'int',
+        'length' => 10,
+        'not null' => TRUE,
+      ),
+      'uid' => [
+        'description' => "User Id",
+        'type' => 'int',
+        'length' => 10,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ]
+    ),
+    'indexes' => array(
+      'nid' => array('nid'),
+    ),
+    'primary key' => array('lid'),
+  );
+
+  return $schema;
+}
