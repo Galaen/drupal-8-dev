@@ -9,6 +9,7 @@ module: {  }
 theme: {  }
 blacklist: {  }
 graylist:
+  - block.block.bartik_powered
   - contact.form.feedback
   - contact.form.personal
 graylist_dependents: true
