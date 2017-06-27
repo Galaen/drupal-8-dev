@@ -82,7 +82,7 @@ class HelloNodeHistoryController extends ControllerBase {
       );
 
       $link['examples_link'] = [
-        '#title' => $this->t('Click me for a surprise!!!'),
+        '#title' => $this->t('Click me for a surprise!!!', [], ['context' => "Click me for a surprise context"]),
         '#type' => 'link',
         '#url' => Url::fromRoute('hello.path_with_data'), //Url::fromRoute('examples.description'),
         '#prefix' => '<div id="foo-replace">',
