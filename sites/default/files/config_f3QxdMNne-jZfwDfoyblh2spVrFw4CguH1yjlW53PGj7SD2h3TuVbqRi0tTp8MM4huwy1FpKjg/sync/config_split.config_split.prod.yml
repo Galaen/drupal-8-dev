@@ -1,0 +1,16 @@
+uuid: 46b62829-ad5d-47ed-9d38-b5bfc1fd0b66
+langcode: en
+status: false
+dependencies: {  }
+id: prod
+label: Prod
+folder: sites/default/files/config_f3QxdMNne-jZfwDfoyblh2spVrFw4CguH1yjlW53PGj7SD2h3TuVbqRi0tTp8MM4huwy1FpKjg/prod
+module: {  }
+theme: {  }
+blacklist: {  }
+graylist:
+  - contact.form.feedback
+  - contact.form.personal
+graylist_dependents: true
+graylist_skip_equal: true
+weight: 0
